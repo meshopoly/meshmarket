@@ -1,0 +1,110 @@
+-----------------------
+Description of the file
+-----------------------
+
+This is the mesh format used by the c library triangle by J.R. Shewchuck for Delaunay mesh generation.
+You can find both the code and a more detailed description of the file format at the web site 
+
+https://www.cs.cmu.edu/~quake/triangle.html
+
+
+The mesh is described in three files. 
+
+- ***.node contains the list of mesh node 
+- ***.edge contains the list of mesh edges 
+- ***.ele contains the list of triangles 
+
+The ".node" file 
+----------------
+
+The first line contains 
+- the number of vertexes, 
+- the dimension (which is always 2),
+- the number of attributes associated with the point, 
+- the boundary marker 
+
+For instance, a possilbe header of a ".node" file can be 
+
+13  2  3  1
+
+that has 13 vertexes, the dimension is 2, there are 3 attributes for each node and there is the boundary marker.
+Then, there is the list of points stored as 
+- id
+- x coordinate
+- y coordinate
+- the list of attributes 
+- the boundary marker 
+
+For instance, the line 
+
+3  0.  10.  0.3 0.2 0.4 1
+
+represents the point which has the identifier "3", its x coordinate is 0., the y is 10.,
+it is associated with three attributes (the first one is 0.3, the second one is 0.2 and the last one is 0.4) and 
+it belongs to the boundary of the mesh.
+
+The ".edge" file 
+----------------
+
+The first line contains
+- the number of edges
+- the boundary marker 
+
+For instance, a possilbe header of a ".edge" file can be 
+
+28  1
+
+that has 28 edges and there are the boundary flag.
+Then, there is the list of edges that are stored as
+- id of the edge
+- the first endpoint according to the numbering in the .node file 
+- the second endpoint according to the numbering in the .node file 
+- an integer to set the marker of the edge. 
+
+Also in this case if the marker is 0, the edge is internal and does not belong to the physica boundary of the mesh.
+
+For instance, the line 
+
+5 10 2 8
+
+corresponds to the edge with the identifier 5, 
+that connects the points with the identifier 10 and 2
+in the corresponding .node file, whose marker is 8. 
+
+The ".ele" file 
+----------------
+
+The first line contains 
+- the number of triangles 
+- the number of points connected 
+- 1 if threre is a triangle marker, 0 otherwise
+
+For instance, a possilbe header of a ".ele" file can be 
+
+16  3 1
+
+that has 16 edges and for each triangle and at the end of each line there will be an integer representing its marker.
+Then, there is the list of triangles that are stored as
+- id of the triangle
+- the first point according to the numbering in the .node file 
+- the second point according to the numbering in the .node file
+- the third point according to the numbering in the .node file  
+- an integer to set the marker of the triangle.
+
+The first, second and third triangle's vertexes are stored in a counter clock wise order.
+
+For instance, the line 
+
+   4       2     6    11 3
+
+corresponds to the triangle with the identifier 4, 
+that connects the points with the identifier 2, 6 and 11
+in the corresponding .node file, whose marker is 3. 
+
+
+
+
+
+
+
+
