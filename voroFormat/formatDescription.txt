@@ -1,0 +1,69 @@
+-----------------------
+Description of the file
+-----------------------
+
+This type of format is a customized format from the library voro++.
+You can find the link of this library in 
+
+https://math.lbl.gov/voro++/
+
+The mesh is described in only one file.
+There is no a global numbering of faces, edges or vertexes each polyhedron is described as a stand alone entity.
+This fact is not so nice since one has to do some post processing on the file to have the global numebering of the vertexes.
+
+For each polyhedron of the mesh there is the following description
+
+A first line with the keyword "VoronoiCell" and the global identifier of the cell.
+For instance, the line 
+
+VoronoiCell 6
+
+is placed just at the beginning of the description of the polyhedron with identifier 6.
+Then, there is a line with the number of vertexes and their coordinates x, y and z.
+For example, the following block of lines 
+
+12
+0.00000000000000 0.00000000000000 0.00000000000000
+0.69586243337276 0.31243909108275 0.03967358884577
+0.00000000000000 1.00000000000000 0.00000000000000
+0.65322433916200 0.42796142040478 0.00000000000000
+0.00000000000000 0.44070060127599 0.47585240497446
+0.00000000000000 0.00000000000000 0.21310361920104
+0.00000000000000 1.00000000000000 0.13091189495396
+0.17678979247970 1.00000000000000 0.00000000000000
+0.65662451423284 0.00000000000000 0.00000000000000
+0.73541834540709 0.25076445040224 0.00000000000000
+0.42032808231663 0.00000000000000 0.15906898671043
+0.16941872265981 0.35522731370721 0.40311326788382
+
+tells that the actual polyhedron has 12 vertexes.
+Then, there are 12 lines with the x, y and z coordinates for each point.
+
+After the description of the points,
+there is the description of the polyhedron faces.
+
+8 
+1 9 8 10 11 #
+1 3 9 #
+1 11 4 6 7 3 #
+2 0 8 9 3 7 #
+2 6 4 5 0 #
+2 7 6 #
+4 11 10 5 #
+5 10 8 0 #
+
+The first integer is the number of facet the polyhedon is composed by,
+in the example above the polyhedron has 8 faces.
+Each face is described by a sequence of integers.
+Such integrers are the polyhedron local numbering of its vertexes that starts from 0.
+Each line ends with the special character "#" that tells that the list of polygon vertexes is finished.
+To give an example of the descrition of the polyhedron facese, 
+in the previous list of faces the first face is a pentagon and its edges are 1-9, 9-8, 8-10, 10-11 and 11-1.
+
+Finally, there is a last line composed by 8 integers with the markers of the polyhedon's faces.
+An example of such line is 
+
+0 1 2 0 0 0 0 0
+
+In this case the polyhedron has 8 faces and only the second and the third one have 1 and 2 as markers, respectively, all the other ones have marker 0.
+ 
