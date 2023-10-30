@@ -1,0 +1,103 @@
+-----------------------
+Description of the file
+-----------------------
+
+This format is derived from the meshes generated in the Matlab library Polymesher in
+
+http://paulino.princeton.edu/journal_papers/2012/SMO_12_PolyMesher_matlabcode_v1.1.zip
+
+http://paulino.princeton.edu/journal_papers/2012/SMO_12_PolyMesher.pdf
+
+by Paulino and collaborators.
+
+The mesh is defined in one Matlab file region.mat while the neighbours of each element and the related structures are in neighbours.mat. Some variables are redundant.
+
+***
+In region.mat the variables are
+
+nedges
+
+number of edges for each polygon
+row vector (1 x ne)
+
+---
+
+BBox
+
+Bounding box for each polygon
+4 coordinates per element, namely [x1, y1, x2, y2] with (x1, y1) and (x2, y2) the coordinates of the left-bottom and right-top corner of the box, respectively.
+matrix (ne x 4)
+
+---
+
+ne
+
+number of elements
+integer
+
+---
+
+coord
+
+Complete collection of the vertices coordinates
+matrix (nv x 2)
+
+---
+
+coords_element
+
+list of (xi,yi) coordinates for each vertex of each polygon
+cell (1 x 100).
+Each cell: (nedges x 2)
+
+---
+
+region.connectivity
+
+Indexes of the vertices in coord that compose each polygon
+cell (100 x 1)
+Each cell: (1 x nedges)
+
+---
+
+area
+
+area of each polygon
+column vector (ne x 1)
+
+---
+
+max_kb
+
+DG-penalization parameter for each edge of each polygon
+cell (1 x ne)
+Each cell: (nedges x 1)
+
+---
+
+In neighbour.mat the variables are
+
+nedges
+
+number of edges for each polygon
+row vector (1 x ne)
+
+---
+
+neigh
+
+IDs of the neighbouring elements across each edge for each polygon.
+If the edge is a portion of the boundary, the ID is a negative number indicating a tag for imposing BCs.
+cell (1 x ne)
+Each cell: (1 x nedges)
+
+---
+
+neighedges
+
+Array-position of the current polygon in the neighbours list of the neighbouring element
+cell (1 x ne)
+Each cell: (1 x nedges)
+
+
+
