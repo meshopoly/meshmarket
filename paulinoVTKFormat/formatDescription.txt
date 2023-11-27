@@ -1,0 +1,20 @@
+-----------------------
+Description of the file
+-----------------------
+
+This format is derived from the meshes generated in the Matlab library Polymesher
+(see ../paulinoFormat)
+although it contains only the minimal information to construct the mesh:
+no neighbors of other structures are saved here.
+
+The example vtk file provided is in ASCII format (not xml).
+It contains a VTK POLYDATA in the following form:
+
+POINTS (number of points in the header)
+coordinates of each mesh vertex (2D -> 3rd coordinate = 0)
+
+POLYGONS (number of polygons and total number of edges in the header)
+number of edges of the polygon, followed by list of indices of its vertices (as in POINTS)
+
+CELL_DATA (number of polygons in the header)
+cell tags: one for each polygon
